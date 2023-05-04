@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 const { handleMongooseError } = require("../helpers");
 
-const  Joi = require("joi")
+const Joi = require("joi");
 
 const userSchema = new Schema({
   username: {
@@ -11,7 +11,7 @@ const userSchema = new Schema({
   email: {
     type: String,
   },
-  wolfyHeroNamene: {
+  wolfyHeroName: {
     type: String,
   },
   telegramId: {
@@ -30,33 +30,33 @@ const userSchema = new Schema({
 
 userSchema.post("save", handleMongooseError);
 
- const schemaPost = Joi.object({
-   username: Joi.string().required(),
-   email: Joi.string().optional(),
-   wolfyHeroNamene: Joi.string().optional(),
-   telegramId: Joi.string().required(),
-   wins: Joi.string().optional(),
-   losses: Joi.string().optional(),
-   draws: Joi.string().optional(),
- });
+const schemaPost = Joi.object({
+  username: Joi.string().required(),
+  email: Joi.string().optional(),
+  wolfyHeroName: Joi.string().optional(),
+  telegramId: Joi.string().required(),
+  wins: Joi.number().optional(),
+  losses: Joi.number().optional(),
+  draws: Joi.number().optional(),
+});
 
 const schemaPut = Joi.object({
   username: Joi.string().required(),
   email: Joi.string().optional(),
-  wolfyHeroNamene: Joi.string().optional(),
+  wolfyHeroName: Joi.string().optional(),
   telegramId: Joi.string().required(),
-  wins: Joi.string().optional(),
-  losses: Joi.string().optional(),
-  draws: Joi.string().optional(),
+  wins: Joi.number().optional(),
+  losses: Joi.number().optional(),
+  draws: Joi.number().optional(),
 });
 
 const schemaPatch = Joi.object({
   username: Joi.string().required(),
   email: Joi.string().optional(),
-  wolfyHeroNamene: Joi.string().optional(),
-  wins: Joi.string().optional(),
-  losses: Joi.string().optional(),
-  draws: Joi.string().optional(),
+  wolfyHeroName: Joi.string().optional(),
+  wins: Joi.number().optional(),
+  losses: Joi.number().optional(),
+  draws: Joi.number().optional(),
 });
 
 const User = model("user", userSchema);
@@ -64,10 +64,10 @@ const User = model("user", userSchema);
 const schemas = {
   schemaPost,
   schemaPut,
-  schemaPatch
-}
+  schemaPatch,
+};
 
 module.exports = {
   User,
   schemas,
-}
+};
